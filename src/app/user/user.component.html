@@ -1,0 +1,139 @@
+<div class="col-md-8">
+
+<h2> Usuarios </h2>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Nombre</th>
+      <th>Apellido</th>
+      <th>Monto</th>
+      <th>Ult.Fecha</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let us of users">
+      <td>{{us?.user_id}}</td>
+      <td>{{us?.name}}</td>
+      <td>{{us?.surname}}</td>
+      <td>${{us?.cuenta.monto}}</td>
+      <td>{{us?.cuenta.fecha}}</td>    
+      <td>
+          <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalEditar" (click)="getUser(us)">Editar</button>
+      </td>
+      <td>
+          <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modalMonto" (click)="getUser(us)">Monto</button>
+      </td> 
+      <td>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalInfo" (click)="getUser(us)">Info.</button>
+      </td>
+      <td>
+          <button type="button" class="btn btn-danger" (click)="deleteUser(us)">Borrar</button>
+      </td>	
+    </tr>
+  </tbody>
+</table>
+
+
+<!-- Modal Monto -->
+<div class="modal" id="modalMonto">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">{{user?.name}} {{user?.surname}}</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        
+	<div class="form-group">
+  		<label for="monto">Agregar monto:</label>
+  		<input [(ngModel)]="valor" type="text" placeholder="$" class="form-control" id="monto" > 
+        </div>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+	<button type="button" class="btn btn-danger" data-dismiss="modal" (click)="addMonto(user)">Aceptar</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Modal Editar -->
+<div class="modal" id="modalEditar">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">{{user?.name}} {{user?.surname}}</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+         <div class="form-group">
+  		<label for="usr">Nombre:</label>
+  		<input [(ngModel)]="user.name" placeholder="user?.name" type="text" class="form-control" id="usr" >
+	
+  		<label for="surn">Apellido:</label>
+  		<input [(ngModel)]="user.surname" placeholder="user?.surname" type="text" class="form-control" id="surn">
+	</div>
+	<div class="form-group">
+  		<label for="emai">Email:</label>
+ 	 	<input [(ngModel)]="user.email" placeholder="user?.email" type="text" class="form-control" id="emai">
+  		<label for="dire">Dirección:</label>
+  		<input [(ngModel)]="user.dir" placeholder="user?.dir" type="text" class="form-control" id="dire">
+  		<label for="tele">Teléfono:</label>
+  		<input [(ngModel)]="user.tel" placeholder="user?.tel" type="text" class="form-control" id="tele">
+	</div>
+      </div>
+	
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="updateUser(user)">Update</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+     
+    </div>
+  </div>
+</div>
+ 
+<!-- Modal Info -->
+<div class="modal" id="modalInfo">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">{{user?.name}} {{user?.surname}}</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        
+	<p><span>Email: </span>{{user?.email}}</p>
+        <p><span>Dirección: </span>{{user?.dir}}</p>
+        <p><span>Tel: </span>{{user?.tel}}</p>
+      
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+</div>

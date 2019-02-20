@@ -1,0 +1,47 @@
+<div class="row">
+
+<div class="col-8">
+
+  <h2 class="text-center">Nuevo usuario</h2>
+
+<form>
+
+  <div class="form-group">
+    <label for="firstName">Nombre:</label>
+    <input [(ngModel)]="user.name" placeholder="Nombre..." name="firstName" class="form-control" id="firstName">
+  </div>
+
+  <div class="form-group">
+    <label for="surname">Apellido:</label>
+    <input [(ngModel)]="user.surname" placeholder="Apellido..." name="surname" class="form-control" id="surname">
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email:</label>
+    <input type="email" [(ngModel)]="user.email" placeholder="Email" name="email" class="form-control" id="email">
+  </div>
+
+  <div class="form-group">
+    <label for="dir">Direccion:</label>
+    <input [(ngModel)]="user.dir" placeholder="Dir..." name="dir" class="form-control" id="dir">
+  </div>
+
+  <div class="form-group">
+    <label for="tel">Tel:</label>
+    <input [(ngModel)]="user.tel" placeholder="Tel..." name="tel" class="form-control" id="tel">
+  </div>
+
+  <button class="btn btn-success" (click)="createUser()">Create</button>
+</form>
+</div>
+
+    <div class="card bg-info col-3 m-auto">
+        
+	<div class="card-body text-center">
+          <h1>Información</h1>
+          <p class="card-text">Complete el formulario para agregar a un nuevo usuario. En caso de equivocarse cuenta con la opcion de corregirlo desde la sección Usuarios, y de ahi elegir la opcion Editar. </p>
+        </div>
+	
+    </div>	
+
+</div>
