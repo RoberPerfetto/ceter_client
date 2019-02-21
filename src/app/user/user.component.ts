@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { OktaAuthService } from '@okta/okta-angular';
 
 import { User } from '../model/user.model';
 import { UserService } from './user.service';
@@ -14,14 +15,20 @@ export class UserComponent implements OnInit {
   public users: User[] = [];
   public user: User = new User();
   valor: string;
+  isAuthenticated: boolean;
 
-  constructor(private router: Router, private userService: UserService) { }
+  constructor(private router: Router, private userService: UserService, private oktaAuth: OktaAuthService) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.userService.getUsers()
       .subscribe( data => {
         this.users = data;
       });
+    this.isAuthenticated = await this.oktaAuth.isAuthenticated();
+    // Subscribe to authentication state changes
+    this.oktaAuth.$authenticationState.subscribe(
+      (isAuthenticated: boolean)  => this.isAuthenticated = isAuthenticated
+    );
   };
 
   deleteUser(user: User): void {

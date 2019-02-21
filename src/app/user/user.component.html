@@ -20,16 +20,16 @@
       <td>${{us?.cuenta.monto}}</td>
       <td>{{us?.cuenta.fecha}}</td>    
       <td>
-          <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalEditar" (click)="getUser(us)">Editar</button>
+          <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalEditar" (click)="getUser(us)" *ngIf="isAuthenticated">Editar</button>
       </td>
       <td>
-          <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modalMonto" (click)="getUser(us)">Monto</button>
+          <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modalMonto" (click)="getUser(us)" *ngIf="isAuthenticated">Monto</button>
       </td> 
       <td>
           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalInfo" (click)="getUser(us)">Info.</button>
       </td>
       <td>
-          <button type="button" class="btn btn-danger" (click)="deleteUser(us)">Borrar</button>
+          <button type="button" class="btn btn-danger" (click)="deleteUser(us)" *ngIf="isAuthenticated">Borrar</button>
       </td>	
     </tr>
   </tbody>

@@ -7,7 +7,7 @@
       <li class="nav-item">
         <a class="nav-link" routerLink="/home">Home <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="isAuthenticated">
         <a class="nav-link" routerLink="/add-user">Crear</a>
       </li>
       <li class="nav-item">
@@ -15,8 +15,12 @@
       </li>
     </ul>
     <ul class="navbar-nav">
-      <li><a href=""><span class="icono-user"></span> Sign Up</a></li>
-      <li><a href=""><span class="icono-display"></span> Login</a></li>
+      <button class="btn btn-light" *ngIf="isAuthenticated"
+          (click)="oktaAuth.logout()">Logout
+      </button>
+      <button class="btn btn-light" *ngIf="!isAuthenticated"
+            (click)="oktaAuth.loginRedirect()">Login
+      </button>
     </ul>
   
 </nav>
